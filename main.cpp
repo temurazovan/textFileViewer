@@ -6,22 +6,24 @@ int main() {
 
     std::cout << "Enter file path:" << std::endl;
     std::cin >> path;
-    std::ifstream test;
-    test.open(path, std::ios::binary);
+    std::ifstream file;
+    file.open(path, std::ios::binary);
 
-    if (!test.is_open()) {
+    if (!file.is_open()) {
         std::cout << "Error! File isn't open" << std::endl;
     } else {
         std::cout << "File is open" << std::endl;
     }
 
-    std::string buffer;
-    while (!test.eof()) {
-        getline(test, buffer);
-        std::cout << buffer << std::endl;
+    char buffer[20];
+    while (!file.eof()) {
+        file.read(buffer, sizeof(buffer));
+        for (int i = 0; i < file.gcount(); ++i) {
+            std::cout << buffer[i];
+        }
     }
 
-    test.close();
+    file.close();
 
     return 0;
 }
