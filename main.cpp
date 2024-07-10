@@ -11,6 +11,7 @@ int main() {
 
     if (!file.is_open()) {
         std::cout << "Error! File isn't open" << std::endl;
+        return 0;
     } else {
         std::cout << "File is open" << std::endl;
     }
